@@ -9,12 +9,17 @@
 </head>
 <body>
     <div class="nav-bar">
-        <span class="first">
-            Verify
-        </span>
-         <span class="second">   
-             Me
-         </span>.
+        <div>
+        <span class="first">Verify</span><span class="second">Me</span>
+        </div>
+        <div class="nav_items">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+        </div>
+       
     </div>
     
 </body>

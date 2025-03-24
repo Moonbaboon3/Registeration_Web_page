@@ -9,14 +9,13 @@
 <body>
     <div class="footer-container">
         <div class="title">
-            Copyright &copy; 2025 VerifyMe,Inc
+            Copyright &copy; 2025 <span class="first_logo">Verify</span><span class="second_logo">Me</span> Inc. All rights reserved
         </div>
-
         <div class="social-icons">
-            <img src="facebook.png" width="50px" height="50px" alt="">
-            <img src="instagram.png" width="50px" height="50px" alt="">
-            <img src="twitter.png"  width="50px" height="50px" alt="">
-            <img src="linkedin.png" alt="">
+            <img src="assets/fb.png"  alt="Facebook">
+            <img src="assets/instagram.png"  alt="instagram">
+            <img src="assets/twitter.png"   alt="X">
+            <img src="assets/linkedIn.png" alt="linkedIn">
         </div>
     </div>
 </body>
