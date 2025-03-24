@@ -13,6 +13,7 @@
     <?php
     $full_name_error = $user_name_error = $phone_error = $whatsapp_number_error = $address_error = $email_error = $password_error = $confirm_password_error = $user_image_error = "";
     $full_name = $user_name = $phone = $whatsapp_number = $address = $email = $password = $confirm_password = $user_image = "";
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["full_name"])) {
             $full_name_error = "*Full Name is required!*";
@@ -44,16 +45,37 @@
         } else {
             $email = $_POST["email"];
         }
+
+        // Password validation
         if (empty($_POST["password"])) {
             $password_error = "*Password is required!*";
         } else {
             $password = $_POST["password"];
+            // Check password length (at least 8 characters)
+            if (strlen($password) < 8) {
+                $password_error = "*Password must be at least 8 characters!*";
+            }
+            // Check for at least 1 number
+            elseif (!preg_match('/[0-9]/', $password)) {
+                $password_error = "*Password must contain at least 1 number!*";
+            }
+            // Check for at least 1 special character
+            elseif (!preg_match('/[!@#$%^&*()\-_=+{};:,<.>]/', $password)) {
+                $password_error = "*Password must contain at least 1 special character!*";
+            }
         }
+
+        // Confirm password validation
         if (empty($_POST["confirm_password"])) {
             $confirm_password_error = "*Confirm Password is required!*";
         } else {
             $confirm_password = $_POST["confirm_password"];
+            // Check if passwords match
+            if (!empty($password) && $password != $confirm_password) {
+                $confirm_password_error = "*Passwords do not match!*";
+            }
         }
+
         if (empty($_POST["user_image"])) {
             $user_image_error = "*User Image is required!*";
         } else {
@@ -158,7 +180,7 @@
                         <p class="input-label">Password</p>
                     </div>
                     <div class="im_input">
-                        <input type="password" class="input-field password-field" name="password" placeholder="Must be at least 8 characters." autofocus autocomplete="off">
+                        <input type="password" class="input-field password-field" name="password" placeholder="Must be at least 8 characters with 1 number and 1 special character" autofocus autocomplete="off">
                         <img
                             src="assets/lock.png"
                             class="input-icon toggle-password"
