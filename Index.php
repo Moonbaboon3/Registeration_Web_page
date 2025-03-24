@@ -90,10 +90,10 @@
                         <p class="input-label">Username</p>
                     </div>
                     <div class="im_input">
-                        <input type="text" class="input-field" name="user_name" placeholder="Enter Your Username" autofocus autocomplete="off">
+                        <input type="text" class="input-field" name="user_name" placeholder="Enter Your Username" autofocus autocomplete="off" onsubmit="server_request(this.value)">
                         <img src="assets/user.png" class="input-icon" alt="">
                     </div>
-                    <p class="error"><?php echo $user_name_error ?></p>
+                    <p class="error" id="username_error"><?php echo $user_name_error ?></p>
                 </div>
 
             </div>
@@ -194,7 +194,7 @@
                     <input type="file" class="input-field_img" name="user_image" accept="image/*">
                 </div>
             </div>
-            <button class="register-button">Register</button>
+            <input type="submit" class="register-button">Register</input>
         </form>
     </div>
     <?php include 'Footer.php' ?>
