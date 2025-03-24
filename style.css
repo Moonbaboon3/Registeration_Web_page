@@ -180,7 +180,6 @@ input[type="file"] {
 /* submit button styles here */
 .register-button {
   height: 45px;
-  font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
   border: none;

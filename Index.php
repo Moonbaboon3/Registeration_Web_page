@@ -93,7 +93,6 @@
                 <div class="input-inner-container">
                     <div class="lol">
                         <p class="input-label">Full Name</p>
-
                     </div>
                     <div class="im_input">
                         <input type="text"
@@ -103,7 +102,6 @@
                             autofocus autocomplete="off">
                         <img src="assets/signature.png" class="input-icon" alt="">
                     </div>
-
                     <p class="error"><?php echo $full_name_error ?></p>
                 </div>
 
@@ -117,7 +115,6 @@
                     </div>
                     <p class="error" id="username_error"><?php echo $user_name_error ?></p>
                 </div>
-
             </div>
 
             <div class="input-outer-container">
@@ -138,13 +135,11 @@
                         <p class="input-label">WhatsApp Number</p>
                     </div>
                     <div class="im_input">
-
                         <input type="text" class="input-field" name="whatsapp_number" placeholder="Enter Your WhatsApp Number" autofocus autocomplete="off">
                         <img src="assets/whatsapp.png" class="input-icon" alt="">
                     </div>
                     <p class="error"><?php echo $whatsapp_number_error ?></p>
                 </div>
-
             </div>
 
             <div class="input-outer-container">
@@ -153,7 +148,6 @@
                         <p class="input-label">Address</p>
                     </div>
                     <div class="im_input">
-
                         <input type="text" class="input-field" name="address" placeholder="Enter Your Address" autofocus autocomplete="off">
                         <img src="assets/location-pin.png" class="input-icon" alt="">
                     </div>
@@ -170,8 +164,6 @@
                     </div>
                     <p class="error"><?php echo $email_error ?></p>
                 </div>
-
-
             </div>
 
             <div class="input-outer-container">
@@ -186,11 +178,9 @@
                             class="input-icon toggle-password"
                             onclick="togglePassword(this)"
                             alt="Toggle Password">
-
                     </div>
                     <p class="error"><?php echo $password_error; ?></p>
                 </div>
-
                 <div class="input-inner-container">
                     <p class="input-label">Confirm Password</p>
                     <div class="im_input">
@@ -209,14 +199,20 @@
                     <p class="error"><?php echo $confirm_password_error; ?></p>
                 </div>
             </div>
-
             <div class="input-outer-container">
                 <div class="input-inner-container">
                     <p class="input-label">Upload Profile Picture</p>
-                    <input type="file" class="input-field_img" name="user_image" accept="image/*">
+                    <input
+                        type="file"
+                        class="input-field_img"
+                        name="user_image"
+                        accept="image/*">
                 </div>
             </div>
-            <input type="submit" class="register-button">Register</input>
+            <button
+                type="submit"
+                value="Submit"
+                class="register-button">Register</button>
         </form>
     </div>
     <?php include 'Footer.php' ?>
