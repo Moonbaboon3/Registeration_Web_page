@@ -11,14 +11,14 @@
 <body>
     <?php include 'header.php' ?>
     <?php
+    $phone_regex = '/^\+?[0-9]{10,}$/';
     $full_name_error = $user_name_error = $phone_error = $whatsapp_number_error = $address_error = $email_error = $password_error = $confirm_password_error = $user_image_error = "";
     $full_name = $user_name = $phone = $whatsapp_number = $address = $email = $password = $confirm_password = $user_image = "";
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["full_name"])) {
             $full_name_error = "*Full Name is required!*";
         } else {
-            $full_name = $_POST["full_name"];
+            $full_name = htmlspecialchars($_POST["full_name"]);
         }
         if (empty($_POST["user_name"])) {
             $user_name_error = "*Username is required!*";
@@ -29,11 +29,17 @@
             $phone_error = "*Phone Number is required!*";
         } else {
             $phone = $_POST["phone"];
+            if (!preg_match($phone_regex, $phone)) {
+                $phone_error = "*Invalid phone number format!*";
+            }
         }
         if (empty($_POST["whatsapp_number"])) {
             $whatsapp_number_error = "*WhatsApp Number is required!*";
         } else {
             $whatsapp_number = $_POST["whatsapp_number"];
+            if (!preg_match($phone_regex, $whatsapp_number)) {
+                $whatsapp_number_error = "*Invalid phone number format!*";
+            }
         }
         if (empty($_POST["address"])) {
             $address_error = "*Address is required!*";
@@ -95,11 +101,8 @@
                         <p class="input-label">Full Name</p>
                     </div>
                     <div class="im_input">
-                        <input type="text"
-                            class="input-field"
-                            name="full_name"
-                            placeholder="Enter Your Full Name"
-                            autofocus autocomplete="off">
+                        <input type="text" class="input-field" name="full_name" placeholder="Enter Your Full Name"
+                            value="<?php echo $full_name ?>" autofocus autocomplete="off" required>
                         <img src="assets/signature.png" class="input-icon" alt="">
                     </div>
                     <p class="error"><?php echo $full_name_error ?></p>
@@ -110,7 +113,9 @@
                         <p class="input-label">Username</p>
                     </div>
                     <div class="im_input">
-                        <input type="text" class="input-field" name="user_name" placeholder="Enter Your Username" autofocus autocomplete="off" onsubmit="server_request(this.value)">
+                        <input type="text" class="input-field" name="user_name" placeholder="Enter Your Username"
+                            value="<?php echo $user_name ?>" autofocus autocomplete="off"
+                            onsubmit="server_request(this.value)" required>
                         <img src="assets/user.png" class="input-icon" alt="">
                     </div>
                     <p class="error" id="username_error"><?php echo $user_name_error ?></p>
@@ -124,7 +129,9 @@
                     </div>
                     <div class="im_input">
 
-                        <input type="text" class="input-field" name="phone" placeholder="Enter Your Phone Number" autofocus autocomplete="off">
+                        <input type="tel" class="input-field" name="phone" placeholder="Enter Your Phone Number"
+                            value="<?php echo $phone ?>" autofocus autocomplete="off" pattern="^\+?[0-9]{10,}$"
+                            required>
                         <img src="assets/phone-call.png" class="input-icon" alt="">
                     </div>
                     <p class="error"><?php echo $phone_error ?></p>
@@ -135,7 +142,9 @@
                         <p class="input-label">WhatsApp Number</p>
                     </div>
                     <div class="im_input">
-                        <input type="text" class="input-field" name="whatsapp_number" placeholder="Enter Your WhatsApp Number" autofocus autocomplete="off">
+                        <input type="tel" class="input-field" name="whatsapp_number" pattern="^\+?[0-9]{10,}$"
+                            value="<?php echo $whatsapp_number ?>" placeholder="Enter Your WhatsApp Number" autofocus
+                            autocomplete="off" required>
                         <img src="assets/whatsapp.png" class="input-icon" alt="">
                     </div>
                     <p class="error"><?php echo $whatsapp_number_error ?></p>
@@ -148,7 +157,8 @@
                         <p class="input-label">Address</p>
                     </div>
                     <div class="im_input">
-                        <input type="text" class="input-field" name="address" placeholder="Enter Your Address" autofocus autocomplete="off">
+                        <input type="text" class="input-field" name="address" placeholder="Enter Your Address" autofocus
+                            value="<?php echo $address ?>" autocomplete="off" required>
                         <img src="assets/location-pin.png" class="input-icon" alt="">
                     </div>
                     <p class="error"><?php echo $address_error ?></p>
@@ -159,7 +169,8 @@
                         <p class="input-label">Email</p>
                     </div>
                     <div class="im_input">
-                        <input type="email" class="input-field" name="email" placeholder="Enter Your Email" autofocus autocomplete="off">
+                        <input type="email" class="input-field" name="email" placeholder="Enter Your Email" autofocus
+                            value="<?php echo $email ?>" autocomplete="off" required>
                         <img src="assets/gmail.png" class="input-icon" alt="">
                     </div>
                     <p class="error"><?php echo $email_error ?></p>
@@ -172,28 +183,20 @@
                         <p class="input-label">Password</p>
                     </div>
                     <div class="im_input">
-                        <input type="password" class="input-field password-field" name="password" placeholder="Must be at least 8 characters with 1 number and 1 special character" autofocus autocomplete="off">
-                        <img
-                            src="assets/lock.png"
-                            class="input-icon toggle-password"
-                            onclick="togglePassword(this)"
-                            alt="Toggle Password">
+                        <input type="password" class="input-field password-field" name="password"
+                            placeholder="Must be at least 8 characters with 1 number and 1 special character" autofocus
+                            autocomplete="off" required>
                     </div>
+                    <img src="assets/lock.png" class="input-icon toggle-password" onclick="togglePassword(this)"
+                        alt="Toggle Password">
                     <p class="error"><?php echo $password_error; ?></p>
                 </div>
                 <div class="input-inner-container">
                     <p class="input-label">Confirm Password</p>
                     <div class="im_input">
-                        <input
-                            type="password"
-                            class="input-field password-field"
-                            name="confirm_password"
-                            placeholder="Enter to Confirm"
-                            autofocus autocomplete="off">
-                        <img
-                            src="assets/lock.png"
-                            class="input-icon toggle-password"
-                            onclick="togglePassword(this)"
+                        <input type="password" class="input-field password-field" name="confirm_password"
+                            placeholder="Enter to Confirm" autofocus autocomplete="off" required>
+                        <img src="assets/lock.png" class="input-icon toggle-password" onclick="togglePassword(this)"
                             alt="Toggle Password">
                     </div>
                     <p class="error"><?php echo $confirm_password_error; ?></p>
@@ -202,22 +205,20 @@
             <div class="input-outer-container">
                 <div class="input-inner-container">
                     <p class="input-label">Upload Profile Picture</p>
-                    <input
-                        type="file"
-                        class="input-field_img"
-                        name="user_image"
-                        accept="image/*">
+                    <input type="file" class="input-field_img" name="user_image" accept="image/*"
+                        onchange="previewImage(event)" required>
+                    <div class="image-preview-container">
+                        <img id="imagePreview" src="#" alt="Image Preview" class="image-preview" style="display: none;">
+                    </div>
                 </div>
             </div>
-            <button
-                type="submit"
-                value="Submit"
-                class="register-button">Register</button>
+            <button type="submit" value="Submit" class="register-button">Register</button>
         </form>
     </div>
     <?php include 'Footer.php' ?>
     <script src="API_Ops.js">
     </script>
+    <script src="Load_Image.js"></script>
 </body>
 
 </html>
