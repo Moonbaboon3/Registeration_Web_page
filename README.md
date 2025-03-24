@@ -61,8 +61,7 @@ Before submission, the form will enforce the following client-side validations:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo-url.git
-   cd your-repo-folder
+   git clone https://github.com/Moonbaboon3/Registeration_Web_page.git
    ```
 2. Set up the database:
    - Import the `database.sql` file into your MySQL database.
