@@ -186,7 +186,7 @@
                     <div class="im_input">
                         <input type="password" class="input-field password-field" name="password" id="password"
                             placeholder="Must be at least 8 characters with 1 number and 1 special character" autofocus
-                            onchange="validate_confirm_password(event)" autocomplete="off" required>
+                            oninput="validate_confirm_password(event)" autocomplete="off" required>
                     </div>
                     <img src="assets/lock.png" class="input-icon toggle-password" onclick="togglePassword(this)"
                         alt="Toggle Password">
@@ -196,7 +196,7 @@
                     <p class="input-label">Confirm Password</p>
                     <div class="im_input">
                         <input type="password" class="input-field password-field" name="confirm_password"
-                            onchange="validate_confirm_password(event)" id="confirm_password"
+                            oninput="validate_confirm_password(event)" id="confirm_password"
                             placeholder="Enter to Confirm" autofocus autocomplete="off" required>
                         <img src="assets/lock.png" class="input-icon toggle-password" onclick="togglePassword(this)"
                             alt="Toggle Password">
@@ -208,7 +208,7 @@
                 <div class="input-inner-container">
                     <p class="input-label">Upload Profile Picture</p>
                     <input type="file" class="input-field_img" name="user_image" accept="image/*"
-                        oninput="previewImage(event)" required>
+                        onchange="previewImage(event)" required>
                     <div class="image-preview-container">
                         <img id="imagePreview" src="#" alt="Image Preview" class="image-preview" style="display: none;">
                     </div>
