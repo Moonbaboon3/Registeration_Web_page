@@ -207,9 +207,9 @@
             <div class="input-outer-container">
                 <div class="input-inner-container">
                     <p class="input-label">Upload Profile Picture</p>
-                    <input type="file" class="input-field_img" name="user_image" accept="image/*"
+                    <input id="fileInput" type="file" class="input-field_img" name="user_image" accept="image/*"
                         onchange="previewImage(event)" required>
-                    <div class="image-preview-container">
+                    <div id="dropArea" class="image-preview-container">
                         <img id="imagePreview" src="#" alt="Image Preview" class="image-preview" style="display: none;">
                     </div>
                 </div>
