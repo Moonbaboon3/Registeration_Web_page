@@ -166,6 +166,11 @@ body {
   box-shadow: 0px 0px 5px var(--main-color);
 }
 
+.input-field:user-invalid {
+  outline: 2px solid red;
+  border-color: red;
+}
+
 .input-label {
   font-weight: 700;
   font-size: 1rem;
