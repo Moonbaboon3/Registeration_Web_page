@@ -306,3 +306,28 @@ img,
   align-items: center;
   justify-content: center;
 }
+
+.validate-whatsapp-button {
+  background-color: #d8d8d8;
+  margin: 2.5% 0;
+  padding: 5%;
+  border-radius: 10px;
+
+}
+
+.validate-whatsapp-button:hover {
+  background-color: #e7e7e7;
+}
+
+.validate-whatsapp-button:active {
+  background-color: #ffffff;
+}
+
+.validate-whatsapp-button-valid {
+  background-color: #25d366;
+}
+
+.validate-whatsapp-button-invalid,
+.validate-whatsapp-button-invalid:hover {
+  background-color: #ff0000;
+}

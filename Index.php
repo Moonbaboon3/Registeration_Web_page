@@ -91,7 +91,7 @@
     }
     ?>
     <div class="index-container">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" onsubmit="validateForm(event)"
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" onsubmit="validateForm()"
             class="form-container" method="POST">
             <div class="register_conatainer">
                 <h1 class="registerh1">Register</h1>
@@ -144,11 +144,15 @@
                         <p class="input-label">WhatsApp Number</p>
                     </div>
                     <div class="im_input">
-                        <input type="tel" class="input-field" name="whatsapp_number" pattern="^\+?[0-9]{10,}$"
-                            value="<?php echo $whatsapp_number ?>" placeholder="Enter Your WhatsApp Number" autofocus
-                            autocomplete="off" required>
+                        <input type="tel" class="input-field" name="whatsapp_number" id="whatsappNumber"
+                            oninput="resetValidation()" pattern="^\+?[0-9]{10,}$" value="<?php echo $whatsapp_number ?>"
+                            placeholder="Enter Your WhatsApp Number" autofocus autocomplete="off" required>
                         <img src="assets/whatsapp.png" class="input-icon" alt="">
                     </div>
+
+                    <button class="validate-whatsapp-button" onclick="validateWhatsappNumber()" type="button"
+                        id="validateWhatsapp">Validate WhatsApp
+                        Number</button>
                     <p class="error"><?php echo $whatsapp_number_error ?></p>
                 </div>
             </div>
@@ -187,7 +191,7 @@
                     <div class="im_input">
                         <input type="password" class="input-field password-field" name="password" id="password"
                             placeholder="Must be at least 8 characters with 1 number and 1 special character" autofocus
-                            oninput="validateConfirmPassword(event)" autocomplete="off" required>
+                            oninput="validateConfirmPassword()" autocomplete="off" required>
                     </div>
                     <img src="assets/lock.png" class="input-icon toggle-password" onclick="togglePassword(this)"
                         alt="Toggle Password">
