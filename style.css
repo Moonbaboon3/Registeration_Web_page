@@ -323,7 +323,8 @@ img,
   background-color: #ffffff;
 }
 
-.validate-whatsapp-button-valid {
+.validate-whatsapp-button-valid,
+.validate-whatsapp-button-valid:hover {
   background-color: #25d366;
 }
 

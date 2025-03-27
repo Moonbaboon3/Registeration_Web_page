@@ -11,6 +11,28 @@ function resetValidation() {
         whatsappNumberInput.setCustomValidity("");
     }
 }
+function callWhatsappApi(phoneNumber) {
+    const url = `https://whatsapp-data1.p.rapidapi.com/number/${phoneNumber}`;
+    const options = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': '78b5ca5932msh295ad583a51d6b9p14c98ajsn02f021869243',
+            'x-rapidapi-host': 'whatsapp-data1.p.rapidapi.com'
+        }
+    };
+    return fetch(url, options);
+}
+async function callWhatsappApiMock(phoneNumber) {
+    console.log(`Mock API called for: ${phoneNumber}`);
+    return new Promise((resolve) => {
+        setTimeout(() => resolve({
+            ok: true,
+            status: 200,
+            json: async () => ({ isUser: true })
+        }), 500);
+    });
+}
+
 async function validateWhatsappNumber() {
     resetValidation();
     const whatsappNumberInput = document.getElementById("whatsappNumber");
@@ -42,18 +64,8 @@ async function isValidWhatsappNumber(phoneNumber) {
         return true;
     }
     validatedNumber = null;
-
-    const url = `https://whatsapp-data1.p.rapidapi.com/number/${phoneNumber}`;
-    const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-key': '78b5ca5932msh295ad583a51d6b9p14c98ajsn02f021869243',
-            'x-rapidapi-host': 'whatsapp-data1.p.rapidapi.com'
-        }
-    };
-
     try {
-        const response = await fetch(url, options);
+        const response = await callWhatsappApiMock(phoneNumber);
         const result = await response.json()
         if (response.status == 200) {
             const isUser = result["isUser"];
