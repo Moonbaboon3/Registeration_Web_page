@@ -28,7 +28,7 @@ async function callWhatsappApiMock(phoneNumber) {
         setTimeout(() => resolve({
             ok: true,
             status: 200,
-            json: async () => ({ isUser: true })
+            json: async () => ({ isUser: phoneNumber.startsWith("20") })
         }), 500);
     });
 }
