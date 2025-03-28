@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration App</title>
 
+
 </head>
+
 
 <body>
     <?php include 'header.php' ?>
@@ -91,7 +93,7 @@
     }
     ?>
     <div class="index-container">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" onsubmit="validateForm()"
+        <form action="DB_Ops.php" onsubmit="validateForm()"
             class="form-container" method="POST">
             <div class="register_conatainer">
                 <h1 class="registerh1">Register</h1>
@@ -115,12 +117,12 @@
                         <p class="input-label">Username</p>
                     </div>
                     <div class="im_input">
-                        <input type="text" class="input-field" name="user_name" placeholder="Enter Your Username"
-                            value="<?php echo $user_name ?>" autofocus autocomplete="off"
-                            onsubmit="server_request(this.value)" required>
+                        <input type="text" class="input-field" name="user_name" id="user_name" onInput="checkUsername()" placeholder="Enter Your Username" required>
                         <img src="assets/user.png" class="input-icon" alt="">
-                    </div>
-                    <p class="error" id="username_error"><?php echo $user_name_error ?></p>
+                    </div>  
+                    <span id="check_username" ></span>
+                    <p class="error"></p>
+                
                 </div>
             </div>
 
@@ -219,7 +221,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" value="Submit" class="register-button">Register</button>
+            <button type="submit" value="Submit" class="register-button" id="submit">Register</button>
         </form>
     </div>
     <?php include 'Footer.php' ?>
@@ -227,6 +229,8 @@
     </script>
     <script src="Load_Image.js"></script>
     <script src="Validations.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src ="check_username.js"></script>
 </body>
 
 </html>

@@ -15,11 +15,39 @@ use Dom\Mysql;
     catch(mysqli_sql_exception){
         echo "Could not connect!";
     }
-
-    $check =$_POST["userinput"];
+   
+    //$check = "moh21";
     //gets input from user and adds it to query 
-    $query ='select username from user_names where username= "'.$check.'"';
-    $result = mysqli_query($conn,$query);
+    /*$stmt = mysqli_stmt_init($conn);
+    $query ="select COUNT(*) from user where user_name LIKE ?";
+    if(mysqli_stmt_prepare($stmt, $query))
+    {
+        mysqli_stmt_bind_param($stmt, "s", $check);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        if(mysqli_num_rows($result) > 0)
+        {
+            echo "username already exits";
+        }
+        else{
+            $sql = "INSERT INTO User (full_name, user_name, phone, whatsapp_number, address, password, email)
+            VALUES ('Mohammed Abdallah', 'moh21', '091' , '+249 966 327 998', 'Sheikh Zayied' , '2004' , 'mohamed@email.com')";
+
+            if($conn->query($sql) === TRUE){
+                echo "New record created successfully";
+            }else {
+                echo "Error:" . $sql . "<br>" . $conn->error;
+            }
+        }
+
+        $conn->close();
+   }*/
+   
+    
+    
+    
+    
+    /*$result = mysqli_query($conn,$query);
     //if a result is found then the result is the table
     if(mysqli_fetch_array($result)){
 
@@ -32,6 +60,6 @@ use Dom\Mysql;
         echo "thise username doesnt exist";
     }
     //close connection to database to free up space
-    mysqli_close($conn);
+    mysqli_close($conn);*/
 
 ?>
