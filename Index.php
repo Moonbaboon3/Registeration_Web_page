@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration App</title>
-
-
 </head>
-
 
 <body>
     <?php include 'header.php' ?>
@@ -53,46 +50,10 @@
         } else {
             $email = $_POST["email"];
         }
-
-        // Password validation
-        if (empty($_POST["password"])) {
-            $password_error = "*Password is required!*";
-        } else {
-            $password = $_POST["password"];
-            // Check password length (at least 8 characters)
-            if (strlen($password) < 8) {
-                $password_error = "*Password must be at least 8 characters!*";
-            }
-            // Check for at least 1 number
-            elseif (!preg_match('/[0-9]/', $password)) {
-                $password_error = "*Password must contain at least 1 number!*";
-            }
-            // Check for at least 1 special character
-            elseif (!preg_match('/[!@#$%^&*()\-_=+{};:,<.>]/', $password)) {
-                $password_error = "*Password must contain at least 1 special character!*";
-            }
-        }
-
-        // Confirm password validation
-        if (empty($_POST["confirm_password"])) {
-            $confirm_password_error = "*Confirm Password is required!*";
-        } else {
-            $confirm_password = $_POST["confirm_password"];
-            // Check if passwords match
-            if (!empty($password) && $password != $confirm_password) {
-                $confirm_password_error = "*Passwords do not match!*";
-            }
-        }
-
-        if (empty($_POST["user_image"])) {
-            $user_image_error = "*User Image is required!*";
-        } else {
-            $user_image = $_POST["user_image"];
-        }
     }
     ?>
     <div class="index-container">
-        <form action="DB_Ops.php" onsubmit="validateForm()" class="form-container" method="POST">
+        <form action="DB_Ops.php" onsubmit="return validateForm()" class="form-container" method="POST" enctype="multipart/form-data">
             <div class="register_conatainer">
                 <h1 class="registerh1">Register</h1>
             </div>
@@ -185,29 +146,36 @@
             </div>
 
             <div class="input-outer-container">
+                <!-- Password Field -->
                 <div class="input-inner-container">
                     <div class="lol">
                         <p class="input-label">Password</p>
                     </div>
-                    <div class="im_input">
+                    <div class="im_input" style="position: relative;">
                         <input type="password" class="input-field password-field" name="password" id="password"
-                            placeholder="Must be at least 8 characters with 1 number and 1 special character" autofocus
-                            oninput="validateConfirmPassword()" autocomplete="off" required>
+                            placeholder="Must be at least 8 characters with 1 number and 1 special character"
+                            oninput="validatePassword()" required>
+                        <img src="assets/lock.png" class="input-icon"
+                            style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"
+                            onclick="togglePasswordVisibility(this)" alt="Toggle Password">
                     </div>
-                    <img src="assets/lock.png" class="input-icon toggle-password" onclick="togglePassword(this)"
-                        alt="Toggle Password">
-                    <p class="error"><?php echo $password_error; ?></p>
+                    <p class="error" id="password-error"></p>
                 </div>
+
+                <!-- Confirm Password Field -->
                 <div class="input-inner-container">
-                    <p class="input-label">Confirm Password</p>
-                    <div class="im_input">
-                        <input type="password" class="input-field password-field" name="confirm_password"
-                            oninput="validateConfirmPassword(event)" id="confirm_password"
-                            placeholder="Enter to Confirm" autofocus autocomplete="off" required>
-                        <img src="assets/lock.png" class="input-icon toggle-password" onclick="togglePassword(this)"
-                            alt="Toggle Password">
+                    <div class="lol">
+                        <p class="input-label">Confirm Password</p>
                     </div>
-                    <p class="error"><?php echo $confirm_password_error; ?></p>
+                    <div class="im_input" style="position: relative;">
+                        <input type="password" class="input-field password-field" name="confirm_password" id="confirm_password"
+                            placeholder="Re-enter your password"
+                            oninput="validateConfirmPassword()" required>
+                        <img src="assets/lock.png" class="input-icon"
+                            style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"
+                            onclick="togglePasswordVisibility(this)" alt="Toggle Password">
+                    </div>
+                    <p class="error" id="confirm-error"></p>
                 </div>
             </div>
             <div class="input-outer-container">
@@ -225,12 +193,12 @@
         </form>
     </div>
     <?php include 'Footer.php' ?>
-    <script src="API_Ops.js">
+    <script src="JS/API_Ops.js">
     </script>
-    <script src="Load_Image.js"></script>
-    <script src="Validations.js"></script>
+    <script src="JS/Load_Image.js"></script>
+    <script src="JS/Validations.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="check_username.js"></script>
+    <script src="JS/check_username.js"></script>
 </body>
 
 </html>

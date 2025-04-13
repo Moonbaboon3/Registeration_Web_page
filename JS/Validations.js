@@ -1,12 +1,74 @@
+// Password Validation Functions
+function validatePassword() {
+  const password = document.getElementById("password");
+  const passwordError = document.getElementById("password-error");
+
+  // Reset previous errors
+  password.setCustomValidity("");
+  passwordError.textContent = "";
+
+  // Check if empty
+  if (!password.value) {
+    password.setCustomValidity("Password is required!");
+    passwordError.textContent = "*Password is required!*";
+    return false;
+  }
+
+  // Check length
+  if (password.value.length < 8) {
+    password.setCustomValidity("Password must be at least 8 characters!");
+    passwordError.textContent = "*Password must be at least 8 characters!*";
+    return false;
+  }
+
+  // Check for number
+  if (!/\d/.test(password.value)) {
+    password.setCustomValidity("Password must contain at least 1 number!");
+    passwordError.textContent = "*Password must contain at least 1 number!*";
+    return false;
+  }
+
+  // Check for special character
+  if (!/[!@#$%^&*()\-_=+{};:,<.>]/.test(password.value)) {
+    password.setCustomValidity(
+      "Password must contain at least 1 special character!"
+    );
+    passwordError.textContent =
+      "*Password must contain at least 1 special character!*";
+    return false;
+  }
+  return true;
+}
+
 function validateConfirmPassword() {
   const password = document.getElementById("password");
   const confirm_password = document.getElementById("confirm_password");
-  confirm_password.setCustomValidity(
-    password.value == confirm_password.value
-      ? ""
-      : "Confirm Password should match Password!"
-  );
+  const confirmError = document.getElementById("confirm-error");
+
+  // Reset previous errors
+  confirm_password.setCustomValidity("");
+  confirmError.textContent = "";
+
+  // Check if empty
+  if (!confirm_password.value) {
+    confirm_password.setCustomValidity("Confirm Password is required!");
+    confirmError.textContent = "*Confirm Password is required!*";
+    return false;
+  }
+
+  // Check if passwords match
+  if (password.value !== confirm_password.value) {
+    confirm_password.setCustomValidity(
+      "Confirm Password should match Password!"
+    );
+    confirmError.textContent = "*Passwords do not match!*";
+    return false;
+  }
+
+  return true;
 }
+
+// Keep all your existing functions below
 function resetValidation() {
   const whatsappNumberInput = document.getElementById("whatsappNumber");
   const validateButton = document.getElementById("validateWhatsapp");
@@ -18,6 +80,7 @@ function resetValidation() {
     whatsappNumberInput.setCustomValidity("");
   }
 }
+
 function callWhatsappApi(phoneNumber) {
   const url = `https://whatsapp-data1.p.rapidapi.com/number/${phoneNumber}`;
   const options = {
@@ -29,6 +92,7 @@ function callWhatsappApi(phoneNumber) {
   };
   return fetch(url, options);
 }
+
 async function callWhatsappApiMock(phoneNumber) {
   console.log(`Mock API called for: ${phoneNumber}`);
   return new Promise((resolve) => {
@@ -65,7 +129,9 @@ async function validateWhatsappNumber() {
   }
   validateButton.disabled = false;
   whatsappNumberInput.reportValidity();
+  return isValid;
 }
+
 validatedNumber = null;
 async function isValidWhatsappNumber(phoneNumber) {
   if (validatedNumber && phoneNumber === validatedNumber) {
@@ -88,15 +154,26 @@ async function isValidWhatsappNumber(phoneNumber) {
     return null;
   }
 }
+
+// Modified validateForm function to include password validation
 async function validateForm(event) {
   event.preventDefault();
+
+  // Validate all fields
   const whatsappValidation = validateWhatsappNumber();
-  validateConfirmPassword();
+  const isPasswordValid = validatePassword();
+  const isConfirmValid = validateConfirmPassword();
+
   await whatsappValidation;
-  if (!event.target.checkValidity()) {
+
+  if (!isPasswordValid || !isConfirmValid || !event.target.checkValidity()) {
+    // Focus on the first invalid field
+    if (!isPasswordValid) {
+      document.getElementById("password").focus();
+    } else if (!isConfirmValid) {
+      document.getElementById("confirm_password").focus();
+    }
     return false;
   }
   event.target.submit();
 }
-
-// password validation codes are here.
