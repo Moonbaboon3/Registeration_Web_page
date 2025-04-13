@@ -89,12 +89,10 @@
         } else {
             $user_image = $_POST["user_image"];
         }
-
     }
     ?>
     <div class="index-container">
-        <form action="DB_Ops.php" onsubmit="validateForm()"
-            class="form-container" method="POST">
+        <form action="DB_Ops.php" onsubmit="validateForm()" class="form-container" method="POST">
             <div class="register_conatainer">
                 <h1 class="registerh1">Register</h1>
             </div>
@@ -117,12 +115,13 @@
                         <p class="input-label">Username</p>
                     </div>
                     <div class="im_input">
-                        <input type="text" class="input-field" name="user_name" id="user_name" onInput="checkUsername()" placeholder="Enter Your Username" required>
+                        <input type="text" class="input-field" name="user_name" id="user_name" onInput="checkUsername()"
+                            placeholder="Enter Your Username" required>
                         <img src="assets/user.png" class="input-icon" alt="">
-                    </div>  
-                    <span id="check_username" ></span>
+                    </div>
+                    <span id="check_username"></span>
                     <p class="error"></p>
-                
+
                 </div>
             </div>
 
@@ -217,7 +216,8 @@
                     <input id="fileInput" type="file" class="input-field_img" name="user_image" accept="image/*"
                         onchange="previewImage(event)" required>
                     <div id="dropArea" class="image-preview-container">
-                        <img id="imagePreview" src="#" alt="Image Preview" class="image-preview" style="display: none;">
+                        <img id="imagePreview" src="image" alt="Image Preview" class="image-preview"
+                            style="display: none;">
                     </div>
                 </div>
             </div>
@@ -230,7 +230,7 @@
     <script src="Load_Image.js"></script>
     <script src="Validations.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src ="check_username.js"></script>
+    <script src="check_username.js"></script>
 </body>
 
 </html>
