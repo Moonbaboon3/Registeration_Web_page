@@ -76,7 +76,7 @@
                         <p class="input-label">Username</p>
                     </div>
                     <div class="im_input">
-                        <input type="text" class="input-field" name="user_name" id="user_name" onInput="checkUsername()"
+                        <input type="text" class="input-field" name="user_name" id="user_name" onkeyup="checkUsername()"
                             placeholder="Enter Your Username" required>
                         <img src="assets/user.png" class="input-icon" alt="">
                     </div>
@@ -189,7 +189,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" value="Submit" class="register-button" id="submit">Register</button>
+            <button name="submit" type="submit" value="Submit" class="register-button" id="submit">Register</button>
         </form>
     </div>
     <?php include 'Footer.php' ?>
