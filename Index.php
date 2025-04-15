@@ -61,7 +61,7 @@
             <div class="input-outer-container">
                 <div class="input-inner-container">
                     <div class="lol">
-                        <p class="input-label">Full Name</p>
+                        <p class="input-label"><span style="color: red;">*</span> Full Name</p>
                     </div>
                     <div class="im_input">
                         <input type="text" class="input-field" name="full_name" placeholder="Enter Your Full Name"
@@ -73,7 +73,7 @@
 
                 <div class="input-inner-container">
                     <div class="lol">
-                        <p class="input-label">Username</p>
+                        <p class="input-label"><span style="color: red;">*</span> Username</p>
                     </div>
                     <div class="im_input">
                         <input type="text" class="input-field" name="user_name" id="user_name" onkeyup="checkUsername()"
@@ -89,7 +89,7 @@
             <div class="input-outer-container">
                 <div class="input-inner-container">
                     <div class="lol">
-                        <p class="input-label">Phone Number</p>
+                        <p class="input-label"><span style="color: red;">*</span> Phone Number</p>
                     </div>
                     <div class="im_input">
 
@@ -103,7 +103,7 @@
 
                 <div class="input-inner-container">
                     <div class="lol">
-                        <p class="input-label">WhatsApp Number</p>
+                        <p class="input-label"><span style="color: red;">*</span> WhatsApp Number</p>
                     </div>
                     <div class="im_input">
                         <input type="tel" class="input-field" name="whatsapp_number" id="whatsappNumber"
@@ -122,7 +122,7 @@
             <div class="input-outer-container">
                 <div class="input-inner-container">
                     <div class="lol">
-                        <p class="input-label">Address</p>
+                        <p class="input-label"><span style="color: red;">*</span> Address</p>
                     </div>
                     <div class="im_input">
                         <input type="text" class="input-field" name="address" placeholder="Enter Your Address" autofocus
@@ -134,7 +134,7 @@
 
                 <div class="input-inner-container">
                     <div class="lol">
-                        <p class="input-label">Email</p>
+                        <p class="input-label"><span style="color: red;">*</span> Email</p>
                     </div>
                     <div class="im_input">
                         <input type="email" class="input-field" name="email" placeholder="Enter Your Email" autofocus
@@ -149,7 +149,7 @@
                 <!-- Password Field -->
                 <div class="input-inner-container">
                     <div class="lol">
-                        <p class="input-label">Password</p>
+                        <p class="input-label"><span style="color: red;">*</span> Password</p>
                     </div>
                     <div class="im_input" style="position: relative;">
                         <input type="password" class="input-field password-field" name="password" id="password"
@@ -165,7 +165,7 @@
                 <!-- Confirm Password Field -->
                 <div class="input-inner-container">
                     <div class="lol">
-                        <p class="input-label">Confirm Password</p>
+                        <p class="input-label"><span style="color: red;">*</span> Confirm Password</p>
                     </div>
                     <div class="im_input" style="position: relative;">
                         <input type="password" class="input-field password-field" name="confirm_password" id="confirm_password"
@@ -180,7 +180,7 @@
             </div>
             <div class="input-outer-container">
                 <div class="input-inner-container">
-                    <p class="input-label">Upload Profile Picture</p>
+                    <p class="input-label"><span style="color: red;">*</span> Upload Profile Picture</p>
                     <input id="fileInput" type="file" class="input-field_img" name="user_image" accept="image/*"
                         onchange="previewImage(event)" required>
                     <div id="dropArea" class="image-preview-container">
