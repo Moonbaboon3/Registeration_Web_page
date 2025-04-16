@@ -39,9 +39,35 @@ try {
           
                 
             }
-    
+        
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["user_image"])) {
+                //sets director for the photo and appends the directory into file path using the image's name
+                $target_dir = "uploads/";
+                $target_file = $target_dir . basename($_FILES["user_image"]["name"]);
+                $uploadOk = 1;
+                //use built int path info to check for type of photo before saving
+                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                
+                if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
+                    $user_image_error = "Sorry, only JPG, JPEG, PNG  files are allowed.";
+                    $uploadOk = 0;
+                }
 
-                if (!empty($_POST['full_name'])) {
+                if ($uploadOk == 0) {
+                    $user_image_error = "Sorry, your file was not uploaded.";
+                } else {
+                        //use move uploaded file  which was uploaded using enctype in form into target file
+                        //save path into $user_image to save into database
+                    if (move_uploaded_file($_FILES["user_image"]["tmp_name"], $target_file)) {
+                        $user_image = $target_file; 
+                    } else {
+                        $user_image_error = "Sorry, there was an error uploading your file.";
+                    }
+                }
+            }
+
+                if (!empty($_POST['full_name']) && !empty($_POST['user_name']) && !empty($_POST['phone']) && !empty($_POST['whatsapp_number']) && !empty($_POST['address']) && !empty($_POST['password']) && !empty($_POST['email'])) {
+     
                     $full_name = $_POST['full_name'];
                     $user_name = $_POST['user_name'];
                     $phone     = $_POST['phone'];
@@ -49,31 +75,15 @@ try {
                     $address   = $_POST['address'];
                     $password  = $_POST['password'];
                     $email     = $_POST['email'];
-                    $image     = $_POST['user_image'];
-                  echo $user_name;
+                
+
                     $sql = "INSERT INTO users 
-                            VALUES ('$user_name', '$full_name', '$password', '$address', '$image', '$email', '$phone', '$whatsnum')";
+                            VALUES ('$user_name', '$full_name', '$password', '$address', '$user_image', '$email', '$phone', '$whatsnum')";
                     mysqli_query($conn, $sql);
                    
 
                 }
                 
-            
-        }
+            }
             mysqli_close($conn);
-    
-    
-
-
-    
-   
-
-    //gets input from user and adds it to query 
-
-
-    
-    
-    
-
-
 ?>
