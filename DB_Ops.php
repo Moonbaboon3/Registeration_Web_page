@@ -20,7 +20,7 @@ try {
         $user_name = $_POST['user_name'];
         //retrieve from db matching row with same user_name
  
-        $query = "SELECT * FROM users WHERE user_name = '$_POST[user_name]'";
+        $query = "SELECT * FROM user WHERE user_name = '$_POST[user_name]'";
         $result = mysqli_query($conn, $query);
         //return results as number of rows
         $count = mysqli_num_rows($result);
@@ -32,14 +32,14 @@ try {
            
 
             }
-            else
+            elseif($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_FILES["user_image"]))
             {
                 echo "<span style='color: green; font-size: 0.9rem; font-weight: bold;'> Username is available to use</span>";
                 echo "<script>$('#submit').prop('disabled, false');</script>";
           
                 
             }
-        
+            #print_r($_FILES["user_image"]);
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["user_image"])) {
                 //sets director for the photo and appends the directory into file path using the image's name
                 $target_dir = "uploads/";
@@ -75,12 +75,11 @@ try {
                     $address   = $_POST['address'];
                     $password  = $_POST['password'];
                     $email     = $_POST['email'];
-                
 
-                    $sql = "INSERT INTO users 
+                    $sql = "INSERT INTO user (user_name, full_name, password, address, image, email, phone, whatsapp_number)
                             VALUES ('$user_name', '$full_name', '$password', '$address', '$user_image', '$email', '$phone', '$whatsnum')";
                     mysqli_query($conn, $sql);
-                   
+                    echo "Registered Successfully!";
 
                 }
                 

@@ -334,3 +334,9 @@ img,
 .validate-whatsapp-button-invalid:hover {
   background-color: #ff0000;
 }
+
+#check_username{
+  color: red; 
+  font-size: 0.9rem; 
+  font-weight: bold;
+}

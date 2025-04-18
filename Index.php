@@ -9,49 +9,8 @@
 
 <body>
     <?php include 'header.php' ?>
-    <?php
-    $phone_regex = '/^\+?[0-9]{10,}$/';
-    $full_name_error = $user_name_error = $phone_error = $whatsapp_number_error = $address_error = $email_error = $password_error = $confirm_password_error = $user_image_error = "";
-    $full_name = $user_name = $phone = $whatsapp_number = $address = $email = $password = $confirm_password = $user_image = "";
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["full_name"])) {
-            $full_name_error = "*Full Name is required!*";
-        } else {
-            $full_name = htmlspecialchars($_POST["full_name"]);
-        }
-        if (empty($_POST["user_name"])) {
-            $user_name_error = "*Username is required!*";
-        } else {
-            $user_name = $_POST["user_name"];
-        }
-        if (empty($_POST["phone"])) {
-            $phone_error = "*Phone Number is required!*";
-        } else {
-            $phone = $_POST["phone"];
-            if (!preg_match($phone_regex, $phone)) {
-                $phone_error = "*Invalid phone number format!*";
-            }
-        }
-        if (empty($_POST["whatsapp_number"])) {
-            $whatsapp_number_error = "*WhatsApp Number is required!*";
-        } else {
-            $whatsapp_number = $_POST["whatsapp_number"];
-            if (!preg_match($phone_regex, $whatsapp_number)) {
-                $whatsapp_number_error = "*Invalid phone number format!*";
-            }
-        }
-        if (empty($_POST["address"])) {
-            $address_error = "*Address is required!*";
-        } else {
-            $address = $_POST["address"];
-        }
-        if (empty($_POST["email"])) {
-            $email_error = "*Email is required!*";
-        } else {
-            $email = $_POST["email"];
-        }
-    }
-    ?>
+   
+    
     <div class="index-container">
         <form action="DB_Ops.php" onsubmit="return validateForm()" class="form-container" method="POST" enctype="multipart/form-data">
             <div class="register_conatainer">
@@ -65,10 +24,10 @@
                     </div>
                     <div class="im_input">
                         <input type="text" class="input-field" name="full_name" placeholder="Enter Your Full Name"
-                            value="<?php echo $full_name ?>" autofocus autocomplete="off" required>
+                            autofocus autocomplete="off" required>
                         <img src="assets/signature.png" class="input-icon" alt="">
                     </div>
-                    <p class="error"><?php echo $full_name_error ?></p>
+                    <p class="error"></p>
                 </div>
 
                 <div class="input-inner-container">
@@ -80,8 +39,8 @@
                             placeholder="Enter Your Username" required>
                         <img src="assets/user.png" class="input-icon" alt="">
                     </div>
-                    <span id="check_username"></span>
-                    <p class="error"></p>
+                    <span id="check_username" ></span>
+                    <p class="error" ></p>
 
                 </div>
             </div>
@@ -94,11 +53,11 @@
                     <div class="im_input">
 
                         <input type="tel" class="input-field" name="phone" placeholder="Enter Your Phone Number"
-                            value="<?php echo $phone ?>" autofocus autocomplete="off" pattern="^\+?[0-9]{10,}$"
+                             autofocus autocomplete="off" pattern="^\+?[0-9]{10,}$"
                             required>
                         <img src="assets/phone-call.png" class="input-icon" alt="">
                     </div>
-                    <p class="error"><?php echo $phone_error ?></p>
+                    <p class="error"></p>
                 </div>
 
                 <div class="input-inner-container">
@@ -107,7 +66,7 @@
                     </div>
                     <div class="im_input">
                         <input type="tel" class="input-field" name="whatsapp_number" id="whatsappNumber"
-                            oninput="resetValidation()" pattern="^\+?[0-9]{10,}$" value="<?php echo $whatsapp_number ?>"
+                            oninput="resetValidation()" pattern="^\+?[0-9]{10,}$"
                             placeholder="Enter Your WhatsApp Number" autofocus autocomplete="off" required>
                         <img src="assets/whatsapp.png" class="input-icon" alt="">
                     </div>
@@ -115,7 +74,7 @@
                     <button class="validate-whatsapp-button" onclick="validateWhatsappNumber()" type="button"
                         id="validateWhatsapp">Validate WhatsApp
                         Number</button>
-                    <p class="error"><?php echo $whatsapp_number_error ?></p>
+                    <p class="error"></p>
                 </div>
             </div>
 
@@ -126,10 +85,10 @@
                     </div>
                     <div class="im_input">
                         <input type="text" class="input-field" name="address" placeholder="Enter Your Address" autofocus
-                            value="<?php echo $address ?>" autocomplete="off" required>
+                             autocomplete="off" required>
                         <img src="assets/location-pin.png" class="input-icon" alt="">
                     </div>
-                    <p class="error"><?php echo $address_error ?></p>
+                    <p class="error"></p>
                 </div>
 
                 <div class="input-inner-container">
@@ -138,10 +97,10 @@
                     </div>
                     <div class="im_input">
                         <input type="email" class="input-field" name="email" placeholder="Enter Your Email" autofocus
-                            value="<?php echo $email ?>" autocomplete="off" required>
+                            autocomplete="off" required>
                         <img src="assets/gmail.png" class="input-icon" alt="">
                     </div>
-                    <p class="error"><?php echo $email_error ?></p>
+                    <p class="error"></p>
                 </div>
             </div>
 
